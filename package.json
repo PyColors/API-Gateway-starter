@@ -1,0 +1,105 @@
+{
+  "name": "api-gateway-starter",
+  "version": "0.0.1",
+  "description": "gateway starter",
+  "license": "ISC",
+  "author": "Py",
+  "scripts": {
+    "build": "rimraf dist && tsc -p tsconfig.build.json",
+    "format": "prettier --write \"**/*.ts\"",
+    "start:dev": "nodemon --config nodemon-dev.json",
+    "start": "node dist/src/main.js",
+    "start:prod": "node dist/src/main.js",
+    "test": "jest",
+    "test:ci": "jest --coverage --ci --forceExit --detectOpenHandles --runInBand",
+    "test:cov": "jest --coverage",
+    "test:e2e": "jest --config ./test/jest-e2e.json",
+    "test:watch": "jest --watch",
+    "lint": "eslint . --ext ts --ext tsx --ext js --ext jsx"
+  },
+  "dependencies": {
+
+    "@nestjs/common": "5.7.4",
+    "@nestjs/core": "5.7.4",
+    "@nestjs/swagger": "3.0.2",
+
+    "axios": "0.19.0",
+    "body-parser": "1.19.0",
+    "class-transformer": "0.2.0",
+    "class-validator": "0.9.1",
+    "cookie-parser": "1.4.4",
+    "csurf": "1.10.0",
+    "express-rate-limit": "3.4.1",
+    "helmet": "3.16.0",
+    "reflect-metadata": "0.1.13",
+    "rimraf": "2.6.3",
+    "rxjs": "6.5.1",
+    "swagger-stats": "0.95.7",
+    "typeorm": "0.2.20",
+    "typescript": "3.4.5",
+    "uuid-validate": "0.0.3"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "8.0.0",
+    "@commitlint/config-conventional": "8.0.0",
+    "@nestjs/testing": "5.7.4",
+    "@types/express": "4.16.1",
+    "@types/jest": "24.0.12",
+    "@types/node": "11.13.8",
+    "@types/supertest": "2.0.7",
+    "@typescript-eslint/eslint-plugin": "1.7.0",
+    "@typescript-eslint/parser": "1.7.0",
+    "eslint": "5.16.0",
+    "eslint-config-prettier": "4.2.0",
+    "eslint-plugin-prettier": "3.0.1",
+    "husky": "2.1.0",
+    "jest": "24.7.1",
+    "lint-staged": "8.1.5",
+    "nodemon": "1.18.11",
+    "prettier": "1.17.0",
+    "supertest": "4.0.2",
+    "ts-jest": "24.0.2",
+    "ts-node": "8.1.0",
+    "tsconfig-paths": "3.8.0",
+    "tslint": "5.16.0",
+    "tslint-config-prettier": "1.18.0",
+    "tslint-plugin-prettier": "2.0.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm test && lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+      "pre-push": "npm test"
+    }
+  },
+  "jest": {
+    "coverageDirectory": "../coverage",
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "ts"
+    ],
+    "rootDir": "src",
+    "testEnvironment": "node",
+    "testRegex": ".spec.ts$",
+    "transform": {
+      "^.+\\.(t|j)s$": "ts-jest"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,css,scss}": [
+      "eslint --fix . --ext ts --ext tsx --ext js --ext jsx",
+      "git add"
+    ],
+    "{*.{json,md}}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "prettier": {
+    "printWidth": 140,
+    "singleQuote": true,
+    "tabWidth": 2,
+    "trailingComma": "all"
+  }
+}
